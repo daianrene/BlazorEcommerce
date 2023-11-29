@@ -1,5 +1,6 @@
 global using Ecommerce.Shared.Models;
 using Ecommerce.Server.Data;
+using Ecommerce.Server.Services;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
+//Dependency Injection
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

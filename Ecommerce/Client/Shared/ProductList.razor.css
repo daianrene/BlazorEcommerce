@@ -28,7 +28,7 @@
     color:forestgreen;
 }
 
-@media(max-widtth: 1023.98px){
+@media(max-width: 1023.98px){
     .media{
         flex-direction: column;
     }
