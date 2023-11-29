@@ -13,7 +13,7 @@ namespace Ecommerce.Server.Services
             _dataContext = dataContext;
         }
 
-        public async Task<ServiceResponse<Product>> GetProductAsync(int productId)
+        public async Task<ServiceResponse<Product>> GetProduct(int productId)
         {
             var response = new ServiceResponse<Product>();
             var product = await _dataContext.Products.FindAsync(productId);
@@ -30,7 +30,20 @@ namespace Ecommerce.Server.Services
             return response;
         }
 
-        public async Task<ServiceResponse<List<Product>>> GetProductListAsync()
+        public async Task<ServiceResponse<List<Product>>> GetProductsByCategory(string categoryUrl)
+        {
+            var response = new ServiceResponse<List<Product>>
+            {
+                Data = await _dataContext.Products
+                        .Where(p => p.Category != null && p.Category.Url.ToLower().Equals(categoryUrl.ToLower()))
+                        .ToListAsync()
+            };
+
+            return response;
+
+        }
+
+        public async Task<ServiceResponse<List<Product>>> GetProductsList()
         {
             var response = new ServiceResponse<List<Product>>
             {

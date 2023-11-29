@@ -2,6 +2,7 @@ global using Ecommerce.Shared.Models;
 using Ecommerce.Server.Data;
 using Ecommerce.Server.Services;
 using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +23,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 //Dependency Injection
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

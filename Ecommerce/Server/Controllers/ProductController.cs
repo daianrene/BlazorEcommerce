@@ -17,7 +17,7 @@ namespace Ecommerce.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var response = await _productService.GetProductListAsync();
+            var response = await _productService.GetProductsList();
 
             return Ok(response);
         }
@@ -25,10 +25,17 @@ namespace Ecommerce.Server.Controllers
         [HttpGet("{productId}")]
         public async Task<ActionResult<ServiceResponse<Product>>> GetProduct(int productId)
         {
-            var response = await _productService.GetProductAsync(productId);
+            var response = await _productService.GetProduct(productId);
 
             return Ok(response);
         }
 
+        [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProductsByCategory(string categoryUrl)
+        {
+            var response = await _productService.GetProductsByCategory(categoryUrl);
+
+            return Ok(response);
+        }
     }
 }
